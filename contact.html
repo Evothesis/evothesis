@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Evothesis Analytics</title>
+    <meta name="description" content="Contact Evothesis to start owning your analytics data. Get enterprise-grade insights with complete data ownership.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1a365d;
+            --electric-blue: #3182ce;
+            --silver: #e2e8f0;
+            --light-gray: #f7fafc;
+            --white: #ffffff;
+            --dark-gray: #4a5568;
+            --success-green: #38a169;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--navy);
+            background-color: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            border-bottom: 1px solid var(--silver);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--navy);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--electric-blue);
+        }
+
+        .cta-button {
+            background: var(--electric-blue);
+            color: var(--white);
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #2c5aa0;
+        }
+
+        /* Hero Section */
+        .contact-hero {
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--white) 100%);
+            padding: 140px 0 80px;
+            text-align: center;
+        }
+
+        .contact-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .contact-hero .subtitle {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .contact-info h2 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: var(--navy);
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--dark-gray);
+            margin-bottom: 32px;
+        }
+
+        .contact-details {
+            background: var(--light-gray);
+            padding: 40px;
+            border-radius: 16px;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            margin-bottom: 24px;
+            font-size: 1.1rem;
+        }
+
+        .contact-detail:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-detail .icon {
+            width: 48px;
+            height: 48px;
+            background: var(--electric-blue);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            color: var(--white);
+            font-size: 20px;
+        }
+
+        .contact-detail span {
+            color: var(--navy);
+            font-weight: 500;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: var(--white);
+            border: 1px solid var(--silver);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-form h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: var(--navy);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--navy);
+        }
+
+        .form-group.required label::after {
+            content: " *";
+            color: #e53e3e;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--silver);
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: inherit;
+            background: var(--white);
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--electric-blue);
+            box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .optional-label {
+            font-size: 14px;
+            color: var(--dark-gray);
+            font-weight: 400;
+            margin-left: 8px;
+        }
+
+        .submit-button {
+            background: var(--electric-blue);
+            color: var(--white);
+            padding: 16px 32px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background: #2c5aa0;
+        }
+
+        .submit-button:disabled {
+            background: var(--silver);
+            cursor: not-allowed;
+        }
+
+        .form-note {
+            margin-top: 16px;
+            font-size: 14px;
+            color: var(--dark-gray);
+            text-align: center;
+        }
+
+        /* Success Message */
+        .success-message {
+            background: var(--success-green);
+            color: var(--white);
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            text-align: center;
+            display: none;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--navy);
+            color: var(--white);
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .footer-section a {
+            color: var(--silver);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 12px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #2d3748;
+            padding-top: 30px;
+            color: var(--silver);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .contact-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .contact-info h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">Evothesis</a>
+            <ul class="nav-links">
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="privacy.html">Privacy & Compliance</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+            <a href="contact.html" class="cta-button">Get Started</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="contact-hero">
+            <div class="container">
+                <h1>Start Owning Your Analytics</h1>
+                <p class="subtitle">Ready to move beyond platform limitations? Let's discuss how Evothesis can transform your analytics infrastructure.</p>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <div class="container">
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h2>Let's Build Your Analytics Future</h2>
+                        <p>Traditional analytics platforms limit your insights and lock away your data. We provide enterprise-grade tracking with complete data ownership, privacy compliance, and real-time processing.</p>
+                        <p>Whether you're a growing business looking to understand user behavior or an enterprise requiring HIPAA-compliant analytics, we have a solution that scales with your needs.</p>
+                        
+                        <div class="contact-details">
+                            <div class="contact-detail">
+                                <div class="icon">⚡</div>
+                                <span>Typical response time: 2-4 hours</span>
+                            </div>
+                            <div class="contact-detail">
+                                <div class="icon">🔒</div>
+                                <span>GDPR & HIPAA compliance available</span>
+                            </div>
+                            <div class="contact-detail">
+                                <div class="icon">📊</div>
+                                <span>Complete data ownership guaranteed</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form">
+                        <div class="success-message" id="successMessage">
+                            Thanks for your interest! We'll get back to you within 24 hours.
+                        </div>
+                        
+                        <h3>Get Started Today</h3>
+                        <form id="contactForm" onsubmit="handleSubmit(event)">
+                            <div class="form-row">
+                                <div class="form-group required">
+                                    <label for="firstName">First Name</label>
+                                    <input type="text" id="firstName" name="firstName" required>
+                                </div>
+                                <div class="form-group required">
+                                    <label for="lastName">Last Name</label>
+                                    <input type="text" id="lastName" name="lastName" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group required">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+
+                            <div class="form-group required">
+                                <label for="company">Company</label>
+                                <input type="text" id="company" name="company" required>
+                            </div>
+
+                            <div class="form-group required">
+                                <label for="traffic">Estimated Monthly Web Traffic</label>
+                                <select id="traffic" name="traffic" required>
+                                    <option value="">Select your traffic volume...</option>
+                                    <option value="under-100k">Under 100K pageviews/month</option>
+                                    <option value="100k-1m">100K - 1M pageviews/month (Small Business)</option>
+                                    <option value="1m-10m">1M - 10M pageviews/month (Growth Business)</option>
+                                    <option value="10m-100m">10M - 100M pageviews/month (Enterprise)</option>
+                                    <option value="over-100m">Over 100M pageviews/month</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="currentPlatform">Current Analytics Platform <span class="optional-label">(optional)</span></label>
+                                <select id="currentPlatform" name="currentPlatform">
+                                    <option value="">Select current platform...</option>
+                                    <option value="google-analytics">Google Analytics</option>
+                                    <option value="adobe-analytics">Adobe Analytics</option>
+                                    <option value="mixpanel">Mixpanel</option>
+                                    <option value="amplitude">Amplitude</option>
+                                    <option value="segment">Segment</option>
+                                    <option value="other">Other</option>
+                                    <option value="none">No current analytics</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="painPoint">Primary Analytics Challenge <span class="optional-label">(optional)</span></label>
+                                <select id="painPoint" name="painPoint">
+                                    <option value="">Select main challenge...</option>
+                                    <option value="data-access">Limited data access/export</option>
+                                    <option value="privacy-compliance">Privacy compliance (GDPR/HIPAA)</option>
+                                    <option value="data-accuracy">Data sampling/accuracy issues</option>
+                                    <option value="real-time">Need for real-time insights</option>
+                                    <option value="integration">Data warehouse integration</option>
+                                    <option value="vendor-lockin">Vendor lock-in concerns</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="companySize">Company Size <span class="optional-label">(optional)</span></label>
+                                    <select id="companySize" name="companySize">
+                                        <option value="">Select company size...</option>
+                                        <option value="1-10">1-10 employees</option>
+                                        <option value="11-50">11-50 employees</option>
+                                        <option value="51-200">51-200 employees</option>
+                                        <option value="201-1000">201-1000 employees</option>
+                                        <option value="1000+">1000+ employees</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry">Industry <span class="optional-label">(optional)</span></label>
+                                    <select id="industry" name="industry">
+                                        <option value="">Select industry...</option>
+                                        <option value="ecommerce">E-commerce</option>
+                                        <option value="saas">SaaS/Technology</option>
+                                        <option value="healthcare">Healthcare</option>
+                                        <option value="finance">Financial Services</option>
+                                        <option value="education">Education</option>
+                                        <option value="media">Media/Publishing</option>
+                                        <option value="manufacturing">Manufacturing</option>
+                                        <option value="consulting">Consulting</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Tell us about your analytics needs</label>
+                                <textarea id="message" name="message" placeholder="What specific insights are you looking to gain? Any particular compliance requirements? Timeline for implementation?"></textarea>
+                            </div>
+
+                            <button type="submit" class="submit-button">Send Message</button>
+                            <p class="form-note">We'll get back to you as soon as possible, typically within 24 hours.</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <a href="pricing.html">Pricing</a>
+                    <a href="privacy.html">Privacy & Compliance</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="privacy.html">Terms of Service</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Evothesis. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            // Get form elements
+            const form = event.target;
+            const submitButton = form.querySelector('.submit-button');
+            const successMessage = document.getElementById('successMessage');
+            
+            // Disable submit button
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+            
+            // Simulate form submission (placeholder)
+            setTimeout(function() {
+                // Show success message
+                successMessage.style.display = 'block';
+                
+                // Reset form
+                form.reset();
+                
+                // Re-enable button
+                submitButton.disabled = false;
+                submitButton.textContent = 'Send Message';
+                
+                // Scroll to success message
+                successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Hide success message after 5 seconds
+                setTimeout(function() {
+                    successMessage.style.display = 'none';
+                }, 5000);
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

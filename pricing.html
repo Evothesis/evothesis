@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - Evothesis Analytics</title>
+    <meta name="description" content="Transparent pricing for enterprise-grade analytics. Complete data ownership starting at $199/month. GDPR included, HIPAA available.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1a365d;
+            --electric-blue: #3182ce;
+            --silver: #e2e8f0;
+            --light-gray: #f7fafc;
+            --white: #ffffff;
+            --dark-gray: #4a5568;
+            --success-green: #38a169;
+            --light-blue: #bee3f8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--navy);
+            background-color: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            border-bottom: 1px solid var(--silver);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--navy);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--electric-blue);
+        }
+
+        .cta-button {
+            background: var(--electric-blue);
+            color: var(--white);
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #2c5aa0;
+        }
+
+        /* Hero Section */
+        .pricing-hero {
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--white) 100%);
+            padding: 140px 0 80px;
+            text-align: center;
+        }
+
+        .pricing-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .pricing-hero .subtitle {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .pricing-card {
+            background: var(--white);
+            border: 2px solid var(--silver);
+            padding: 50px 40px;
+            border-radius: 16px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .pricing-card.popular {
+            border-color: var(--electric-blue);
+            background: var(--light-blue);
+            transform: scale(1.05);
+        }
+
+        .pricing-card.popular::before {
+            content: "Most Popular";
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--electric-blue);
+            color: var(--white);
+            padding: 8px 24px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--navy);
+        }
+
+        .pricing-card .price {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--navy);
+        }
+
+        .pricing-card .price-subtitle {
+            color: var(--dark-gray);
+            margin-bottom: 32px;
+            font-size: 1.1rem;
+        }
+
+        .pricing-card .pageviews {
+            background: var(--light-gray);
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 32px;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .pricing-card li {
+            padding: 12px 0;
+            position: relative;
+            padding-left: 32px;
+            border-bottom: 1px solid var(--silver);
+        }
+
+        .pricing-card li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-card li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success-green);
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .pricing-card .cta-button {
+            width: 100%;
+            text-align: center;
+            padding: 16px;
+            font-size: 1.1rem;
+        }
+
+        /* Overage Section */
+        .overage-section {
+            background: var(--light-gray);
+            padding: 60px 40px;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .overage-section h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--navy);
+        }
+
+        .overage-section p {
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            margin-bottom: 24px;
+        }
+
+        .overage-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--electric-blue);
+            margin-bottom: 8px;
+        }
+
+        /* HIPAA Section */
+        .hipaa-section {
+            background: var(--navy);
+            color: var(--white);
+            padding: 60px 40px;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .hipaa-section h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .hipaa-section p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 24px;
+        }
+
+        .hipaa-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--electric-blue);
+            margin-bottom: 8px;
+        }
+
+        .hipaa-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        .hipaa-feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .hipaa-feature h4 {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .faq-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--navy);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+        }
+
+        .faq-item {
+            background: var(--light-gray);
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        .faq-item h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--navy);
+        }
+
+        .faq-item p {
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--navy);
+            color: var(--white);
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .footer-section a {
+            color: var(--silver);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 12px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #2d3748;
+            padding-top: 30px;
+            color: var(--silver);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .pricing-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .pricing-cards {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .pricing-card.popular {
+                transform: none;
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">Evothesis</a>
+            <ul class="nav-links">
+                <li><a href="pricing.html" class="active">Pricing</a></li>
+                <li><a href="privacy.html">Privacy & Compliance</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="contact.html" class="cta-button">Get Started</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="pricing-hero">
+            <div class="container">
+                <h1>Enterprise Analytics. Transparent Pricing.</h1>
+                <p class="subtitle">Complete data ownership and privacy compliance at every level. No hidden fees, no vendor lock-in.</p>
+            </div>
+        </section>
+
+        <section class="pricing-section">
+            <div class="container">
+                <div class="pricing-cards">
+                    <div class="pricing-card">
+                        <h3>Small Business</h3>
+                        <div class="price">$199</div>
+                        <p class="price-subtitle">per month</p>
+                        <div class="pageviews">Up to 1M pageviews/month</div>
+                        <ul>
+                            <li>Complete data export to your S3 bucket</li>
+                            <li>Real-time event processing</li>
+                            <li>All tracking capabilities included</li>
+                            <li>Behavioral intelligence & micro-interactions</li>
+                            <li>Activity-based event batching</li>
+                            <li>Cross-tab session continuity</li>
+                            <li>GDPR compliance built-in</li>
+                            <li>Automatic PII redaction</li>
+                            <li>Email support</li>
+                        </ul>
+                        <a href="contact.html" class="cta-button">Get Started</a>
+                    </div>
+                    
+                    <div class="pricing-card popular">
+                        <h3>Growth Business</h3>
+                        <div class="price">$499</div>
+                        <p class="price-subtitle">per month</p>
+                        <div class="pageviews">Up to 10M pageviews/month</div>
+                        <ul>
+                            <li>Everything in Small Business</li>
+                            <li>Advanced attribution modeling</li>
+                            <li>Custom event architecture</li>
+                            <li>Form field completion analysis</li>
+                            <li>Scroll depth & engagement mapping</li>
+                            <li>Priority email support</li>
+                            <li>Implementation assistance</li>
+                        </ul>
+                        <a href="contact.html" class="cta-button">Get Started</a>
+                    </div>
+                    
+                    <div class="pricing-card">
+                        <h3>Enterprise</h3>
+                        <div class="price">$999</div>
+                        <p class="price-subtitle">per month</p>
+                        <div class="pageviews">Up to 100M pageviews/month</div>
+                        <ul>
+                            <li>Everything in Growth Business</li>
+                            <li>Dedicated customer success manager</li>
+                            <li>Custom integration support</li>
+                            <li>Advanced data warehouse connectivity</li>
+                            <li>Priority phone & email support</li>
+                            <li>SLA guarantees</li>
+                            <li>Custom reporting pipelines</li>
+                        </ul>
+                        <a href="contact.html" class="cta-button">Get Started</a>
+                    </div>
+                </div>
+
+                <div class="overage-section">
+                    <h3>Overage Pricing</h3>
+                    <p>Need more pageviews? We scale with your growth.</p>
+                    <div class="overage-price">$10</div>
+                    <p><strong>per 100K additional pageviews</strong><br>Applied to all plans when monthly limits are exceeded</p>
+                </div>
+
+                <div class="hipaa-section">
+                    <h3>HIPAA Compliance Add-On</h3>
+                    <p>Healthcare-grade data handling with Business Associate Agreement support</p>
+                    <div class="hipaa-price">+$1,500</div>
+                    <p><strong>per month</strong> (available for all plans)</p>
+                    
+                    <div class="hipaa-features">
+                        <div class="hipaa-feature">
+                            <h4>Business Associate Agreement</h4>
+                            <p>Full BAA coverage for healthcare compliance</p>
+                        </div>
+                        <div class="hipaa-feature">
+                            <h4>Enhanced Data Security</h4>
+                            <p>Additional encryption and access controls</p>
+                        </div>
+                        <div class="hipaa-feature">
+                            <h4>Audit Trail</h4>
+                            <p>Complete data access logging and reporting</p>
+                        </div>
+                        <div class="hipaa-feature">
+                            <h4>Dedicated Support</h4>
+                            <p>HIPAA-trained support team</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <div class="container">
+                <h2 class="faq-title">Frequently Asked Questions</h2>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h4>How is data delivered to my S3 bucket?</h4>
+                        <p>We export your complete analytics data to your designated S3 bucket in real-time. You maintain full control and ownership of all data, with configurable export formats including JSON and structured datasets.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>What makes your tracking "exceptional"?</h4>
+                        <p>We capture micro-interactions that traditional platforms miss - text selection, scroll velocity, form field completion patterns, and activity-based behavioral insights. Our architecture is built for the cookieless future.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>How does GDPR compliance work?</h4>
+                        <p>GDPR compliance is built into our core architecture. We automatically redact PII, respect Do Not Track preferences, and provide complete data portability. No additional configuration required.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>Can I integrate with my existing data warehouse?</h4>
+                        <p>Yes. Since we export to your S3 bucket, you can easily integrate with any data warehouse (Snowflake, BigQuery, Redshift) or BI tool. Your data, your infrastructure.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>How does pricing work for seasonal traffic spikes?</h4>
+                        <p>Overages are calculated monthly at $10 per 100K additional pageviews. You're only charged for what you use above your plan limit, making it predictable and fair.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>What's included in implementation assistance?</h4>
+                        <p>For Growth and Enterprise plans, we provide setup guidance, custom event configuration, and integration support to ensure you're capturing the right insights from day one.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <a href="pricing.html">Pricing</a>
+                    <a href="privacy.html">Privacy & Compliance</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="privacy.html">Terms of Service</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Evothesis. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

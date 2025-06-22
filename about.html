@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Evothesis Analytics</title>
+    <meta name="description" content="Learn about Evothesis's mission to provide data ownership and privacy-first analytics for modern businesses.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1a365d;
+            --electric-blue: #3182ce;
+            --silver: #e2e8f0;
+            --light-gray: #f7fafc;
+            --white: #ffffff;
+            --dark-gray: #4a5568;
+            --success-green: #38a169;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--navy);
+            background-color: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            border-bottom: 1px solid var(--silver);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--navy);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--electric-blue);
+        }
+
+        .cta-button {
+            background: var(--electric-blue);
+            color: var(--white);
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #2c5aa0;
+        }
+
+        /* Hero Section */
+        .about-hero {
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--white) 100%);
+            padding: 140px 0 80px;
+            text-align: center;
+        }
+
+        .about-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .about-hero .subtitle {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Mission Section */
+        .mission-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .mission-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .mission-text h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 32px;
+            color: var(--navy);
+        }
+
+        .mission-text p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--dark-gray);
+            margin-bottom: 24px;
+        }
+
+        .mission-visual {
+            background: var(--light-gray);
+            padding: 60px;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .mission-visual .icon {
+            font-size: 80px;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .mission-visual h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 16px;
+        }
+
+        .mission-visual p {
+            color: var(--dark-gray);
+            font-size: 1.1rem;
+        }
+
+        /* Values Section */
+        .values-section {
+            padding: 80px 0;
+            background: var(--light-gray);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--navy);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .value-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--electric-blue);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            color: var(--white);
+            font-size: 32px;
+        }
+
+        .value-card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--navy);
+        }
+
+        .value-card p {
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        /* Why We Care Section */
+        .why-section {
+            padding: 80px 0;
+            background: var(--navy);
+            color: var(--white);
+        }
+
+        .why-section .section-title {
+            color: var(--white);
+        }
+
+        .why-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .why-content p {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            margin-bottom: 24px;
+            opacity: 0.9;
+        }
+
+        .why-content .highlight {
+            background: var(--electric-blue);
+            padding: 40px;
+            border-radius: 12px;
+            margin-top: 40px;
+        }
+
+        .why-content .highlight h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .why-content .highlight p {
+            font-size: 1.1rem;
+            opacity: 1;
+        }
+
+        /* Call to Action */
+        .cta-section {
+            padding: 80px 0;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: var(--navy);
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .secondary-button {
+            background: transparent;
+            color: var(--navy);
+            padding: 12px 24px;
+            border: 2px solid var(--navy);
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .secondary-button:hover {
+            background: var(--navy);
+            color: var(--white);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--navy);
+            color: var(--white);
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .footer-section a {
+            color: var(--silver);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 12px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #2d3748;
+            padding-top: 30px;
+            color: var(--silver);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .about-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .mission-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .mission-text h2 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">Evothesis</a>
+            <ul class="nav-links">
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="privacy.html">Privacy & Compliance</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="contact.html" class="cta-button">Get Started</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="about-hero">
+            <div class="container">
+                <h1>Building the Future of Analytics</h1>
+                <p class="subtitle">We believe businesses should own their data and insights, not rent them from platforms that limit, sample, and control access.</p>
+            </div>
+        </section>
+
+        <section class="mission-section">
+            <div class="container">
+                <div class="mission-content">
+                    <div class="mission-text">
+                        <h2>Our Mission</h2>
+                        <p>Traditional analytics platforms have created a world where businesses don't truly own their most valuable asset: their data insights. Companies are forced to accept sampling, delays, and platform limitations while their competitive intelligence remains locked away.</p>
+                        <p>Evothesis changes this. We provide the most detailed behavioral analytics available while ensuring complete data ownership and privacy compliance. Your insights belong to you, not us.</p>
+                        <p>Every business deserves analytics that reveal true user intent, respect privacy regulations, and integrate seamlessly with existing data infrastructure.</p>
+                    </div>
+                    <div class="mission-visual">
+                        <span class="icon">🎯</span>
+                        <h3>Data Ownership</h3>
+                        <p>Your analytics data exported directly to your infrastructure. No vendor lock-in, no sampling, no limitations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="values-section">
+            <div class="container">
+                <h2 class="section-title">Our Core Values</h2>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">🔒</div>
+                        <h3>Privacy First</h3>
+                        <p>Privacy compliance isn't a feature—it's our foundation. Every design decision prioritizes user privacy while maximizing business insights.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">🏗️</div>
+                        <h3>Technical Excellence</h3>
+                        <p>We build for the future, not the past. Our architecture anticipates privacy regulations, cookieless tracking, and evolving business needs.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">🤝</div>
+                        <h3>Customer Ownership</h3>
+                        <p>Your data, your insights, your competitive advantage. We provide the tools, you keep the value. No vendor lock-in, ever.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">⚡</div>
+                        <h3>Performance Obsession</h3>
+                        <p>Sub-second processing, real-time insights, and unlimited scalability. We believe fast data leads to fast decisions and faster growth.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="why-section">
+            <div class="container">
+                <h2 class="section-title">Why We Care</h2>
+                <div class="why-content">
+                    <p>The analytics industry has trained businesses to accept limitations. "Sampling is necessary for scale." "Real-time data isn't possible." "Choose between privacy and insights."</p>
+                    <p>These are false choices created by legacy architectures and business models that prioritize platform growth over customer success.</p>
+                    <p>We've experienced the frustration of losing critical insights to platform limitations, watching competitors gain advantages while our data sat locked in vendor silos, and struggling to maintain compliance without sacrificing analytics depth.</p>
+                    
+                    <div class="highlight">
+                        <h3>The Future is Data Ownership</h3>
+                        <p>Privacy regulations are tightening. Third-party cookies are disappearing. Data sovereignty is becoming a competitive necessity. The companies that own their analytics infrastructure today will lead their markets tomorrow.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2>Ready to Own Your Analytics?</h2>
+                <p>Join the businesses that have moved beyond platform limitations to true data ownership and insights that drive growth.</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="cta-button">Contact Us</a>
+                    <a href="pricing.html" class="secondary-button">View Pricing</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <a href="pricing.html">Pricing</a>
+                    <a href="privacy.html">Privacy & Compliance</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="privacy.html">Terms of Service</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Evothesis. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy & Compliance - Evothesis Analytics</title>
+    <meta name="description" content="GDPR and HIPAA compliant analytics without sacrificing insights. Built-in privacy protection with detailed behavioral tracking.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1a365d;
+            --electric-blue: #3182ce;
+            --silver: #e2e8f0;
+            --light-gray: #f7fafc;
+            --white: #ffffff;
+            --dark-gray: #4a5568;
+            --success-green: #38a169;
+            --light-blue: #bee3f8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--navy);
+            background-color: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            border-bottom: 1px solid var(--silver);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--navy);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--electric-blue);
+        }
+
+        .cta-button {
+            background: var(--electric-blue);
+            color: var(--white);
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #2c5aa0;
+        }
+
+        /* Hero Section */
+        .privacy-hero {
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--white) 100%);
+            padding: 140px 0 80px;
+            text-align: center;
+        }
+
+        .privacy-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .privacy-hero .subtitle {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Compliance Overview */
+        .compliance-overview {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .compliance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .compliance-card {
+            background: var(--light-gray);
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .compliance-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--electric-blue);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            color: var(--white);
+            font-size: 32px;
+        }
+
+        .compliance-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--navy);
+        }
+
+        .compliance-card p {
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        /* GDPR Section */
+        .gdpr-section {
+            padding: 80px 0;
+            background: var(--light-gray);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--navy);
+        }
+
+        .gdpr-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .gdpr-feature {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .gdpr-feature h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--navy);
+        }
+
+        .gdpr-feature p {
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        .gdpr-feature .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--success-green);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            color: var(--white);
+            font-size: 20px;
+        }
+
+        /* HIPAA Section */
+        .hipaa-section {
+            padding: 80px 0;
+            background: var(--navy);
+            color: var(--white);
+        }
+
+        .hipaa-section .section-title {
+            color: var(--white);
+        }
+
+        .hipaa-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hipaa-text h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .hipaa-text p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .hipaa-features {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 12px;
+        }
+
+        .hipaa-features h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hipaa-features ul {
+            list-style: none;
+        }
+
+        .hipaa-features li {
+            padding: 12px 0;
+            position: relative;
+            padding-left: 32px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hipaa-features li:last-child {
+            border-bottom: none;
+        }
+
+        .hipaa-features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--electric-blue);
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* Implementation Section */
+        .implementation-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .implementation-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--electric-blue);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0 auto 24px;
+        }
+
+        .step-card h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--navy);
+        }
+
+        .step-card p {
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            padding: 80px 0;
+            background: var(--light-blue);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .benefit-item {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .benefit-item h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--navy);
+        }
+
+        .benefit-item p {
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--navy);
+            color: var(--white);
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .footer-section a {
+            color: var(--silver);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 12px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #2d3748;
+            padding-top: 30px;
+            color: var(--silver);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .privacy-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hipaa-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">Evothesis</a>
+            <ul class="nav-links">
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="privacy.html" class="active">Privacy & Compliance</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="contact.html" class="cta-button">Get Started</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="privacy-hero">
+            <div class="container">
+                <h1>Privacy-First Analytics Without Compromise</h1>
+                <p class="subtitle">Maintain detailed behavioral insights while exceeding privacy regulations. GDPR compliance built-in, HIPAA available. Your data, your control.</p>
+            </div>
+        </section>
+
+        <section class="compliance-overview">
+            <div class="container">
+                <div class="compliance-grid">
+                    <div class="compliance-card">
+                        <div class="compliance-icon">🛡️</div>
+                        <h3>Built-In Privacy Protection</h3>
+                        <p>Privacy compliance isn't an afterthought—it's our foundation. Every feature designed with privacy-first principles from day one.</p>
+                    </div>
+                    <div class="compliance-card">
+                        <div class="compliance-icon">📊</div>
+                        <h3>No Insight Sacrifice</h3>
+                        <p>Get deeper behavioral analytics while maintaining strict privacy compliance. Track every micro-interaction without compromising user trust.</p>
+                    </div>
+                    <div class="compliance-card">
+                        <div class="compliance-icon">🔒</div>
+                        <h3>Complete Data Control</h3>
+                        <p>Your data stays yours. Direct export to your S3 bucket means you control access, retention, and processing—essential for compliance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="gdpr-section">
+            <div class="container">
+                <h2 class="section-title">GDPR Compliance Made Simple</h2>
+                <div class="gdpr-features">
+                    <div class="gdpr-feature">
+                        <div class="feature-icon">✓</div>
+                        <h4>Automatic PII Redaction</h4>
+                        <p>Our tracking automatically identifies and redacts sensitive data like passwords, credit card numbers, and SSNs before storage.</p>
+                    </div>
+                    <div class="gdpr-feature">
+                        <div class="feature-icon">✓</div>
+                        <h4>Do Not Track Respect</h4>
+                        <p>Built-in detection and respect for browser Do Not Track preferences. No additional configuration required.</p>
+                    </div>
+                    <div class="gdpr-feature">
+                        <div class="feature-icon">✓</div>
+                        <h4>Data Portability</h4>
+                        <p>Complete data export capabilities for user requests. Your data is always accessible and portable in standard formats.</p>
+                    </div>
+                    <div class="gdpr-feature">
+                        <div class="feature-icon">✓</div>
+                        <h4>Right to Deletion</h4>
+                        <p>Visitor ID-based data removal procedures enable quick compliance with deletion requests while maintaining data integrity.</p>
+                    </div>
+                    <div class="gdpr-feature">
+                        <div class="feature-icon">✓</div>
+                        <h4>Anonymous by Design</h4>
+                        <p>Visitor IDs are randomly generated and not tied to personal information. No cross-site tracking or fingerprinting.</p>
+                    </div>
+                    <div class="gdpr-feature">
+                        <div class="feature-icon">✓</div>
+                        <h4>Consent Integration</h4>
+                        <p>Easy integration with consent management platforms. Tracking respects user preferences automatically.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="hipaa-section">
+            <div class="container">
+                <h2 class="section-title">HIPAA Compliance for Healthcare</h2>
+                <div class="hipaa-content">
+                    <div class="hipaa-text">
+                        <h3>Healthcare-Grade Data Protection</h3>
+                        <p>Our HIPAA compliance add-on provides the enhanced security and documentation required for healthcare organizations to safely analyze patient interactions.</p>
+                        <p>Available for all plans at +$1,500/month with full Business Associate Agreement coverage and dedicated support from our HIPAA-trained team.</p>
+                    </div>
+                    <div class="hipaa-features">
+                        <h4>HIPAA Features Include:</h4>
+                        <ul>
+                            <li>Business Associate Agreement (BAA)</li>
+                            <li>Enhanced data encryption at rest and in transit</li>
+                            <li>Advanced access controls and audit logging</li>
+                            <li>Dedicated HIPAA-trained support team</li>
+                            <li>Regular security assessments and compliance reporting</li>
+                            <li>Incident response procedures</li>
+                            <li>Staff training documentation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="implementation-section">
+            <div class="container">
+                <h2 class="section-title">Implementation Made Easy</h2>
+                <div class="implementation-steps">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h4>One Line Integration</h4>
+                        <p>Replace your existing analytics script with our tracking pixel. Privacy protection and compliance features activate automatically.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h4>Automatic Configuration</h4>
+                        <p>Our system automatically detects and configures privacy settings based on your domain and visitor preferences. No manual setup required.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h4>Instant Compliance</h4>
+                        <p>Start collecting detailed analytics immediately while maintaining full GDPR compliance. HIPAA upgrade available with simple activation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="benefits-section">
+            <div class="container">
+                <h2 class="section-title">Business Benefits of Compliant Analytics</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <h4>Regulatory Confidence</h4>
+                        <p>Focus on growing your business, not compliance audits. Our privacy-first architecture provides peace of mind.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h4>Customer Trust</h4>
+                        <p>Transparent data practices build customer confidence and improve conversion rates.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h4>Future-Proof</h4>
+                        <p>Built for evolving privacy regulations. Stay compliant as laws change without platform migrations.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h4>Data Quality</h4>
+                        <p>Privacy-compliant tracking often means higher data quality and more actionable insights.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h4>Competitive Advantage</h4>
+                        <p>While competitors struggle with compliance, you'll have detailed insights and customer trust.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h4>Cost Efficiency</h4>
+                        <p>Avoid compliance penalties and legal costs with built-in privacy protection.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="privacy.html">Terms of Service</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Evothesis. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>>Product</h4>
+                    <a href="pricing.html">Pricing</a>
+                    <a href="privacy.html">Privacy & Compliance</a>
+                </div>
+                <div class="footer-section">
+                    <h4
