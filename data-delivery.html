@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Delivery Infrastructure - SecurePixel by Evothesis</title>
+    <meta name="description" content="Real-time data delivery to your S3 bucket. Enterprise-grade processing pipeline with GDPR/HIPAA compliance built-in. Complete integration documentation.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1a365d;
+            --electric-blue: #3182ce;
+            --silver: #e2e8f0;
+            --light-gray: #f7fafc;
+            --white: #ffffff;
+            --dark-gray: #4a5568;
+            --success-green: #38a169;
+            --light-blue: #bee3f8;
+            --code-bg: #2d3748;
+            --code-text: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--navy);
+            background-color: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            border-bottom: 1px solid var(--silver);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--navy);
+            text-decoration: none;
+        }
+
+        .logo .by-evothesis {
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--dark-gray);
+            margin-left: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--electric-blue);
+        }
+
+        .cta-button {
+            background: var(--electric-blue);
+            color: var(--white);
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #2c5aa0;
+        }
+
+        /* Hero Section */
+        .data-hero {
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--white) 100%);
+            padding: 140px 0 80px;
+            text-align: center;
+        }
+
+        .data-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .data-hero .subtitle {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Pipeline Section */
+        .pipeline-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--navy);
+        }
+
+        .pipeline-diagram {
+            background: var(--light-gray);
+            padding: 60px 40px;
+            border-radius: 16px;
+            margin-bottom: 60px;
+            overflow-x: auto;
+        }
+
+        .pipeline-flow {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-width: 800px;
+            gap: 20px;
+        }
+
+        .pipeline-step {
+            background: var(--white);
+            padding: 30px 20px;
+            border-radius: 12px;
+            text-align: center;
+            flex: 1;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .pipeline-step h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--navy);
+        }
+
+        .pipeline-step p {
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+        }
+
+        .pipeline-arrow {
+            font-size: 24px;
+            color: var(--electric-blue);
+            flex-shrink: 0;
+        }
+
+        /* Technical Details */
+        .technical-section {
+            padding: 80px 0;
+            background: var(--light-gray);
+        }
+
+        .technical-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .technical-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .technical-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--navy);
+        }
+
+        .tech-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--electric-blue);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--white);
+            font-size: 24px;
+        }
+
+        .technical-card ul {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .technical-card li {
+            padding: 12px 0;
+            position: relative;
+            padding-left: 32px;
+            border-bottom: 1px solid var(--silver);
+        }
+
+        .technical-card li:last-child {
+            border-bottom: none;
+        }
+
+        .technical-card li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success-green);
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        /* Code Examples */
+        .code-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .code-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 40px;
+        }
+
+        .code-example {
+            background: var(--light-gray);
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        .code-example h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--navy);
+        }
+
+        .code-block {
+            background: var(--code-bg);
+            color: var(--code-text);
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            margin-bottom: 16px;
+        }
+
+        .code-description {
+            font-size: 0.95rem;
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        /* Integration Section */
+        .integration-section {
+            padding: 80px 0;
+            background: var(--navy);
+            color: var(--white);
+        }
+
+        .integration-section .section-title {
+            color: var(--white);
+        }
+
+        .integration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .integration-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .integration-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--electric-blue);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--white);
+            font-size: 24px;
+        }
+
+        .integration-card h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .integration-card p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--navy);
+            color: var(--white);
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .footer-section a {
+            color: var(--silver);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 12px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #2d3748;
+            padding-top: 30px;
+            color: var(--silver);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .data-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .pipeline-flow {
+                flex-direction: column;
+                min-width: auto;
+            }
+
+            .pipeline-arrow {
+                transform: rotate(90deg);
+            }
+
+            .code-examples {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">SecurePixel<span class="by-evothesis">by Evothesis</span></a>
+            <ul class="nav-links">
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="privacy.html">Privacy & Compliance</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="contact.html" class="cta-button">Get Started</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="data-hero">
+            <div class="container">
+                <h1>Real-Time Data Delivery to Your Infrastructure</h1>
+                <p class="subtitle">Enterprise-grade data processing pipeline that exports behavioral intelligence directly to your S3 bucket with complete ownership and integration flexibility.</p>
+            </div>
+        </section>
+
+        <section class="pipeline-section">
+            <div class="container">
+                <h2 class="section-title">Data Processing Pipeline</h2>
+                
+                <div class="pipeline-diagram">
+                    <div class="pipeline-flow">
+                        <div class="pipeline-step">
+                            <h4>Data Capture</h4>
+                            <p>Behavioral events captured with sub-second latency</p>
+                        </div>
+                        <div class="pipeline-arrow">→</div>
+                        <div class="pipeline-step">
+                            <h4>Real-Time Processing</h4>
+                            <p>Privacy filtering and bulk optimization</p>
+                        </div>
+                        <div class="pipeline-arrow">→</div>
+                        <div class="pipeline-step">
+                            <h4>S3 Export</h4>
+                            <p>1-minute delivery cycles to your bucket</p>
+                        </div>
+                        <div class="pipeline-arrow">→</div>
+                        <div class="pipeline-step">
+                            <h4>Your Infrastructure</h4>
+                            <p>Integrate with any data warehouse or BI tool</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="technical-section">
+            <div class="container">
+                <h2 class="section-title">Technical Infrastructure Details</h2>
+                <div class="technical-grid">
+                    <div class="technical-card">
+                        <div class="tech-icon">📦</div>
+                        <h3>Data Export Specifications</h3>
+                        <ul>
+                            <li>1-minute delivery cycles to your S3 bucket</li>
+                            <li>JSON format optimized for data warehouse ingestion</li>
+                            <li>Client-partitioned files for multi-tenant processing</li>
+                            <li>Atomic uploads with metadata tracking</li>
+                            <li>Configurable batch sizes and compression</li>
+                            <li>Complete event provenance and timestamps</li>
+                        </ul>
+                    </div>
+
+                    <div class="technical-card">
+                        <div class="tech-icon">🔄</div>
+                        <h3>Processing Pipeline</h3>
+                        <ul>
+                            <li>Real-time bulk event processing</li>
+                            <li>Privacy filtering by compliance level</li>
+                            <li>Automatic PII redaction and anonymization</li>
+                            <li>Client attribution and domain validation</li>
+                            <li>Session continuity and behavioral intelligence</li>
+                            <li>Retry logic and error handling</li>
+                        </ul>
+                    </div>
+
+                    <div class="technical-card">
+                        <div class="tech-icon">🛡️</div>
+                        <h3>Compliance Infrastructure</h3>
+                        <ul>
+                            <li>GDPR privacy filtering built into processing</li>
+                            <li>HIPAA-compliant dedicated processing options</li>
+                            <li>IP address hashing and user agent anonymization</li>
+                            <li>Automatic sensitive data redaction</li>
+                            <li>Complete audit trails and data lineage</li>
+                            <li>Configurable retention and deletion policies</li>
+                        </ul>
+                    </div>
+
+                    <div class="technical-card">
+                        <div class="tech-icon">⚡</div>
+                        <h3>Performance & Reliability</h3>
+                        <ul>
+                            <li>Sub-second event processing latency</li>
+                            <li>99.9% uptime SLA with monitoring</li>
+                            <li>Horizontal scaling for enterprise volumes</li>
+                            <li>Connection pooling and bulk optimizations</li>
+                            <li>Automated failover and recovery</li>
+                            <li>Real-time delivery monitoring and alerts</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="code-section">
+            <div class="container">
+                <h2 class="section-title">Data Format Examples</h2>
+                <div class="code-examples">
+                    <div class="code-example">
+                        <h4>Raw Event Export Format</h4>
+                        <div class="code-block">{
+  "export_metadata": {
+    "export_id": "raw_export_20250719_154912",
+    "export_time": "2025-07-19T15:49:12.123456Z",
+    "event_count": 247,
+    "client_id": "client_your_company"
+  },
+  "events": [
+    {
+      "event_id": "uuid-123-456",
+      "event_type": "page_view",
+      "session_id": "session_abc",
+      "visitor_id": "visitor_xyz",
+      "site_id": "yourcompany.com",
+      "timestamp": "2025-07-19T15:47:30.123456Z",
+      "url": "https://yourcompany.com/products",
+      "user_agent": "Mozilla/5.0...",
+      "ip_address": "192.168.1.100",
+      "raw_event_data": {
+        "referrer": "https://google.com",
+        "page_title": "Products - Your Company"
+      }
+    }
+  ]
+}</div>
+                        <p class="code-description">Complete event data with full metadata, delivered every minute to your S3 bucket with atomic upload guarantees.</p>
+                    </div>
+
+                    <div class="code-example">
+                        <h4>GDPR-Processed Export Format</h4>
+                        <div class="code-block">{
+  "process_metadata": {
+    "process_id": "processed_20250719_154922",
+    "client_id": "client_your_company",
+    "privacy_level": "gdpr",
+    "event_count": 247
+  },
+  "events": [
+    {
+      "event_id": "uuid-123-456",
+      "event_type": "page_view",
+      "session_id": "session_abc",
+      "visitor_id": "visitor_xyz",
+      "site_id": "yourcompany.com",
+      "timestamp": "2025-07-19T15:47:30.123456Z",
+      "url": "https://yourcompany.com/products",
+      "user_agent": "Chrome/[VERSION] (anonymized)",
+      "ip_address": "2e0870240092daf4",
+      "raw_event_data": {
+        "referrer": "https://google.com",
+        "page_title": "Products - Your Company"
+      },
+      "gdpr_processed": true,
+      "ip_anonymized": true
+    }
+  ]
+}</div>
+                        <p class="code-description">Privacy-filtered data with IP hashing, user agent anonymization, and PII redaction applied automatically based on your compliance requirements.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="integration-section">
+            <div class="container">
+                <h2 class="section-title">Data Warehouse Integration</h2>
+                <div class="integration-grid">
+                    <div class="integration-card">
+                        <div class="integration-icon">❄️</div>
+                        <h4>Snowflake Integration</h4>
+                        <p>Direct S3 stage ingestion with COPY commands. Automatic schema detection and time-series partitioning for optimal query performance.</p>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-icon">🔵</div>
+                        <h4>BigQuery Integration</h4>
+                        <p>Cloud Storage transfer jobs with automatic table creation. Streaming inserts available for real-time analytics requirements.</p>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-icon">🔴</div>
+                        <h4>Redshift Integration</h4>
+                        <p>S3 COPY operations with automatic compression. Distkey and sortkey optimization for behavioral analytics workloads.</p>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-icon">📊</div>
+                        <h4>BI Tool Integration</h4>
+                        <p>Direct connections to Tableau, PowerBI, Looker, and other BI platforms through your data warehouse. No additional API complexity.</p>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-icon">🔄</div>
+                        <h4>Custom ETL Pipelines</h4>
+                        <p>Integrate with Airflow, Databricks, or custom processing pipelines. Standard S3 access patterns with predictable delivery schedules.</p>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-icon">⚡</div>
+                        <h4>Real-Time Analytics</h4>
+                        <p>Stream processing with Kafka, Kinesis, or Spark Streaming. EventBridge triggers available for immediate processing workflows.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <a href="pricing.html">Pricing</a>
+                    <a href="privacy.html">Privacy & Compliance</a>
+                    <a href="data-delivery.html">Data Delivery</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="privacy.html">Terms of Service</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 SecurePixel by Evothesis. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://pixel-management-275731808857.us-central1.run.app/pixel/client_evothesis_admin/tracking.js"></script>
+</body>
+</html>
