@@ -58,6 +58,94 @@ document.addEventListener('DOMContentLoaded', function() {
 - Disable ad blockers temporarily
 - Ensure script loads before other tracking code
 
+### Network Connectivity Issues (NEW)
+
+**Problem**: Intermittent tracking failures due to unstable network (aircraft WiFi, mobile networks).
+
+**Template - Check Network Resilience**:
+```javascript
+// Monitor network resilience features
+securepixel.debug(true);
+
+// Send test event and check retry behavior
+securepixel.track('network_resilience_test', {
+    test: true,
+    timestamp: new Date().toISOString(),
+    connection_type: navigator.connection ? navigator.connection.effectiveType : 'unknown'
+});
+
+// Check console for retry messages
+console.log('Look for retry messages: "Network error for domain", "Retrying in"');
+```
+
+**Real Example - Network Resilience Diagnostic**:
+```javascript
+// Test network resilience and retry logic
+function testNetworkResilience() {
+    console.log('🔍 Testing Network Resilience...');
+    
+    // Enable debug to see retry attempts
+    securepixel.debug(true);
+    
+    // Monitor for retry-related log messages
+    const originalLog = console.log;
+    const networkMessages = [];
+    
+    console.log = function(...args) {
+        const message = args.join(' ');
+        if (message.includes('Network error') || 
+            message.includes('Retrying in') || 
+            message.includes('Failed to get client config') ||
+            message.includes('attempt')) {
+            networkMessages.push({
+                timestamp: new Date().toISOString(),
+                message: message
+            });
+        }
+        return originalLog.apply(console, args);
+    };
+    
+    // Send multiple test events to trigger potential retries
+    for (let i = 0; i < 5; i++) {
+        setTimeout(() => {
+            securepixel.track('network_test_' + i, {
+                test_sequence: i,
+                timestamp: new Date().toISOString(),
+                network_info: {
+                    online: navigator.onLine,
+                    connection: navigator.connection ? {
+                        type: navigator.connection.effectiveType,
+                        downlink: navigator.connection.downlink
+                    } : null
+                }
+            });
+        }, i * 1000);
+    }
+    
+    // Check results after 30 seconds
+    setTimeout(() => {
+        console.log('📊 Network Resilience Test Results:');
+        console.log('Network-related messages:', networkMessages);
+        
+        if (networkMessages.length === 0) {
+            console.log('✅ No network issues detected - good connectivity');
+        } else {
+            console.log('⚠️ Network issues detected - retry logic should be working');
+            console.log('Expected behavior: Up to 3 retry attempts with exponential backoff');
+        }
+    }, 30000);
+}
+
+// Run network resilience test
+testNetworkResilience();
+```
+
+**Common Solutions**:
+- Network resilience is automatic - no configuration needed
+- System retries up to 3 times with exponential backoff (1s, 2s, 4s)
+- Events may show `error_domain` client IDs during network failures (this is normal)
+- Stable connectivity will automatically resolve to correct client IDs
+
 ### Domain Authorization Errors
 
 **Problem**: 403 Forbidden errors or "Domain not authorized" messages.

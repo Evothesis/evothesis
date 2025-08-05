@@ -2,6 +2,15 @@
 
 Complete reference for SecurePixel event data structures, payload formats, and delivered data schemas.
 
+## Automated Data Pipeline
+
+SecurePixel features an automated data pipeline that processes your events:
+
+- **Real-time Collection**: Events collected with network resilience
+- **Automated S3 Export**: Raw data exported to S3 every minute
+- **Privacy Processing**: Data filtered according to your privacy settings (GDPR/HIPAA)
+- **Client Delivery**: Processed data partitioned by client for your business intelligence tools
+
 ## Event Data Structure Overview
 
 All SecurePixel events follow a consistent structure with automatic context enrichment:

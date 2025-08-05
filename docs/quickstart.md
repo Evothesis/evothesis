@@ -116,9 +116,9 @@ securepixel.trackPurchase({
    - Session data
 
 2. **Data Processing**: Your data flows through:
-   - Real-time collection
+   - Real-time collection with network resilience
+   - Automated S3 export pipeline (runs every minute)
    - Privacy filtering (GDPR/HIPAA compliant)
-   - S3 export pipeline
    - Your business intelligence tools
 
 3. **Data Access**: Access your data via:

@@ -87,6 +87,49 @@
             color: var(--electric-blue);
         }
 
+        /* Dropdown styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--white);
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 6px;
+            border: 1px solid var(--silver);
+            top: 100%;
+            left: 0;
+        }
+
+        .dropdown-content a {
+            color: var(--navy);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--light-gray);
+            color: var(--electric-blue);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown > a::after {
+            content: " ▼";
+            font-size: 12px;
+            margin-left: 5px;
+        }
+
         .cta-button {
             background: var(--electric-blue);
             color: var(--white);
@@ -392,12 +435,16 @@
         <nav class="container">
             <a href="#" class="logo">SecurePixel<span class="by-evothesis">by Evothesis</span></a>
             <ul class="nav-links">
-                <li><a href="docs.html">Documentation</a></li>
+                <li class="dropdown">
+                    <a href="#">Products</a>
+                    <div class="dropdown-content">
+                        <a href="data-delivery.html">Data Delivery</a>
+                        <a href="privacy.html">Privacy & Compliance</a>
+                    </div>
+                </li>
                 <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="data-delivery.html">Data Delivery</a></li>
-                <li><a href="privacy.html">Privacy & Compliance</a></li>
-                <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li><a href="docs.html">Documentation</a></li>
             </ul>
             <a href="contact.html" class="cta-button">Get Started</a>
         </nav>
@@ -447,7 +494,7 @@
                     <div class="diff-card">
                         <div class="diff-icon">🏗️</div>
                         <h3>Complete Data Ownership</h3>
-                        <p>Your data exports directly to your S3 bucket in real-time. No vendor lock-in, no sampling, no delays. You own the infrastructure and the insights.</p>
+                        <p>Your data exports directly to your S3 bucket with automated pipeline. No vendor lock-in, no sampling, no delays. You own the infrastructure and the insights.</p>
                     </div>
                     <div class="diff-card">
                         <div class="diff-icon">🔗</div>
@@ -457,7 +504,7 @@
                     <div class="diff-card">
                         <div class="diff-icon">⚡</div>
                         <h3>Enterprise Reliability</h3>
-                        <p>Real-time processing, bulk optimization, no sampling limits. Built for 100M+ monthly events with SLA guarantees and dedicated support.</p>
+                        <p>Automated S3 exports every minute, network resilience for unstable connections, bulk optimization. Built for 100M+ monthly events with SLA guarantees and dedicated support.</p>
                     </div>
                     <div class="diff-card">
                         <div class="diff-icon">🛡️</div>
